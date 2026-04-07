@@ -11,7 +11,10 @@ def main(page: ft.Page):
         text_hello.value = f"Нажато: {count} раз"
         page.update()
 
-    button = ft.ElevatedButton(text="Нажми меня", on_click=on_click)
+    button = ft.ElevatedButton(
+        content=ft.Text("Нажми меня"),
+        on_click=on_click
+    )
 
     page.add(text_hello, button)
 
