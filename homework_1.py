@@ -1,22 +1,18 @@
-import tkinter as tk
+import flet as ft
 
-def main():
-    count = 0 
+def main(page: ft.Page):
+    count = 0
 
-    def on_click():
+    text_hello = ft.Text(value="Нажато: 0 раз", size=20)
+
+    def on_click(e):
         nonlocal count
         count += 1
-        text_hello.config(text=f"Нажато: {count} раз")
+        text_hello.value = f"Нажато: {count} раз"
+        page.update()
 
-    root = tk.Tk()
-    root.title("Счётчик")
+    button = ft.ElevatedButton(text="Нажми меня", on_click=on_click)
 
-    text_hello = tk.Label(root, text="Нажато: 0 раз", font=("Arial", 14))
-    text_hello.pack(pady=10)
+    page.add(text_hello, button)
 
-    button = tk.Button(root, text="Нажми меня", command=on_click)
-    button.pack(pady=10)
-
-    root.mainloop()
-
-main()
+ft.app(target=main)
